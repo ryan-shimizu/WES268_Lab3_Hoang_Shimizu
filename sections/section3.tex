@@ -53,13 +53,19 @@
    \caption{3.1.3 - Receiver Output Signal with Matched Filter, $\beta=1$}
 \end{figure}
 
-\paragraph{Fractional Symbol Offset Graph Analysis}
-{insert}
-
 % Write-Up section
 \subsection{Write-Up}
-\hspace*{1.5em}\textbf{1 - }
-Insert
+\subsubsection{}
+\textit{From the notes we know the Gardner algorithm is insensitive to carrier phase
+errors; therefore, symbol timing can be estimated before carrier phase.
+Briefly explain why this ordering is advantageous.}
+
+\noindent\textbf{Answer:}  
+The Gardner detector forms products of samples separated by half a symbol,
+so a constant carrier phase multiplies every term by the same complex number
+and cancels out.  Getting timing first centres each symbol, which boosts
+\(E_b/N_0\) for the carrier loop, and it lets that carrier loop run with a
+narrower bandwidth, further reducing phase noise without risking loss of lock.
 
 
 \end{document}

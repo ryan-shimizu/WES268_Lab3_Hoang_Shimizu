@@ -108,16 +108,43 @@ Costas   & 0.5kHz  & 4kHz  & 0 & $1/\sqrt{2}$ & 2 & 59.3ms   & 67.3ms  \\
    \caption{2.2.3.4 - Costas PLL $f_n=0.5\text{ kHz},\Delta_f=4\text{ kHz},\sigma=0,\zeta=1/\sqrt{2},\mathbb{M}=2$}
 \end{figure}
 
-\textit{What happens when you try and track a data modulated signal with the Standard PLL? Why?}
-\newline
-{Insert}
 % Write-Up section
 \subsection{Write-Up}
-\hspace*{1.5em}\textbf{1 - }
-Insert
+\subsubsection{} 
+\textit{Using the data, discuss the relative performance of the PLLs with respect to the following
+parameters:  
+(a) frequency-pull-in time vs.\ phase-pull-in time versus damping \(\zeta\); \newline
+(b) phase-pull-in time vs.\ total phase noise versus \(f_n\); \newline
+(c) ability to lock in the presence of BPSK/QPSK data.}
 
-\textbf{2 - }
-Insert
+\noindent\textbf{Answer.}  
+(a) Light damping (\(\zeta<1/\!\sqrt2\)) pulls frequency in quickly but produces more
+ringing in the phase response. Heavy damping smooths the phase but lengthens
+the time needed to remove the frequency error. A critically damped loop sits
+between these two cases and gives a reasonable compromise between speed and
+overshoot. \newline
+(b) Raising \(f_n\) widens the loop bandwidth, so both the frequency pull-in time
+and the phase pull-in time decrease. The cost of this wider bandwidth is that
+the loop passes more noise, so the locked phase shows more jitter and a higher
+total phase noise level. \newline 
+(c) A standard PLL does not lock when data flips the carrier phase each symbol
+because the data transitions look like additional phase error to the loop. A
+Costas loop multiplies the in-phase and quadrature components so that the data
+term cancels on average and the carrier component can be tracked.
+
+\subsubsection{} 
+\textit{How would you create a PLL to track a general \(2M\)-PSK signal whose possible
+phases are \(\phi_k=({2\pi}/{2M})k\)?}
+\newline
+\noindent\textbf{Answer.}  
+Raise the received signal
+\(r(t)=A e^{j(\omega_c t+\phi_k)}\) to the \(2M\)-th power:
+\(r^{2M}(t)=A^{2M} e^{j 2M \omega_c t}\). The symbol phase disappears because
+\(e^{j 2M \phi_k}=1\) for every allowed \(\phi_k\). Track this new carrier with
+a standard PLL running at \(2M\omega_c\), then divide the recovered phase (or
+the NCO count) by \(2M\) to obtain the original carrier phase. There is still a
+fixed phase ambiguity that can be resolved with a differential decoder or a
+short known preamble.
 
 
 \end{document}
